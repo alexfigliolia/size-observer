@@ -15,7 +15,7 @@ import { SizeObserver } from "@figliolia/size-observer";
 const node = document.getElementById("myNode");
 
 const observer = new SizeObserver(node, {
-  width: true // set to false to disable observing width
+  width: true, // set to false to disable observing width
   height: true, // set to false to disable observing height
   type: "border-box", // (border-box, "content-box", "device-pixels")
   onChange: ({ height, width }) => {
