@@ -20,6 +20,10 @@
     "defaults",
     "not dead"
   ],
+  "files": [
+    "src",
+    "dist"
+  ],
   "peerDependencies": {
     "react": "^18.3.1"
   },
