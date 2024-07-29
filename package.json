@@ -1,6 +1,6 @@
 {
   "name": "@figliolia/size-observer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Resize Observers simplified",
   "author": "Alex Figliolia",
   "scripts": {
@@ -24,6 +24,11 @@
     "src",
     "dist"
   ],
+  "homepage": "https://github.com/alexfigliolia/size-observer#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexfigliolia/size-observer.git"
+  },
   "peerDependencies": {
     "react": "^18.3.1"
   },
