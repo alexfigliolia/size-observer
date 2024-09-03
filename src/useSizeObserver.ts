@@ -10,9 +10,7 @@ export const useSizeObserver = <T extends Element>(options: Options) => {
     }
     const observer = new SizeObserver(node.current, options);
     return () => {
-      if (observer) {
-        observer.destroy();
-      }
+      observer.destroy();
     };
   }, [options]);
   return node;
