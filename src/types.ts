@@ -11,5 +11,5 @@ export type Dimensions = {
 
 export interface Options extends ElementProperties {
   onChange: Callback<[dimensions: Dimensions]>;
-  type?: "border-box" | "content-box" | "device-pixels";
+  type?: ResizeObserverBoxOptions;
 }

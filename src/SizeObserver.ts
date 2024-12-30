@@ -47,7 +47,7 @@ export class SizeObserver<T extends Element> {
           emit = this.parseBlock(entry.borderBoxSize);
         } else if (this.options.type === "content-box") {
           emit = this.parseBlock(entry.contentBoxSize);
-        } else if (this.options.type === "device-pixels") {
+        } else if (this.options.type === "device-pixel-content-box") {
           emit = this.parseBlock(entry.devicePixelContentBoxSize);
         }
       }
@@ -55,7 +55,7 @@ export class SizeObserver<T extends Element> {
         this.emit();
       }
     });
-    this.observer.observe(this.node);
+    this.observer.observe(this.node, { box: this.options.type });
   }
 
   public destroy() {
