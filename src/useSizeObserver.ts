@@ -8,7 +8,7 @@ export const useSizeObserver = <T extends Element>(options: Options) => {
   stableOptions.current = options;
   const observer = useRef<SizeObserver<T> | null>(null);
   if (observer.current) {
-    observer.current.options = stableOptions.current;
+    observer.current.setOptions(stableOptions.current);
   }
   useLayoutEffect(() => {
     if (!node.current) {

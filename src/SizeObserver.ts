@@ -30,32 +30,42 @@ export class SizeObserver<T extends Element> {
       throw new Error("Element Observer: node reference is undefined");
     }
     this.node = node;
-    this.options = Object.assign(SizeObserver.defaultOptions, options);
+    this.options = options;
     this.initialize();
   }
 
-  public static defaultOptions: Omit<Options, "onChange"> = {
-    type: "border-box",
-  };
+  public setOptions(options: Options) {
+    let reconnect = false;
+    if (this.options.type !== options.type) {
+      reconnect = true;
+    }
+    this.options = options;
+    if (reconnect) {
+      this.destroy();
+      this.initialize();
+    }
+  }
 
   private initialize() {
     this.initializeLayout();
     this.observer = new ResizeObserver(entries => {
       let emit = false;
       for (const entry of entries) {
-        if (this.options.type === "border-box") {
-          emit = this.parseBlock(entry.borderBoxSize);
-        } else if (this.options.type === "content-box") {
+        if (this.options.type === "content-box") {
           emit = this.parseBlock(entry.contentBoxSize);
         } else if (this.options.type === "device-pixel-content-box") {
           emit = this.parseBlock(entry.devicePixelContentBoxSize);
+        } else {
+          emit = this.parseBlock(entry.borderBoxSize);
         }
       }
       if (emit) {
         this.emit();
       }
     });
-    this.observer.observe(this.node, { box: this.options.type });
+    this.observer.observe(this.node, {
+      box: this.options.type ?? "border-box",
+    });
   }
 
   public destroy() {

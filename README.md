@@ -34,17 +34,15 @@ import { useMemo } from "react";
 import { useSizeObserver } from "@figliolia/size-observer";
 
 export const MyComponent = () => {
-
-  // Declare your options
-  const options = useMemo(() => ({
+  // Create Your Ref
+  const nodeRef = useResizeObserver<HTMLDivElement>({
     width: true,
     height: true,
     type: "border-box",
-    onChange: ({ width, height }) => {}
-  }), []);
-
-  // Create Your Ref
-  const nodeRef = useResizeObserver(options);
+    onChange: ({ width, height }) => {
+      // do something with the observed dimensions
+    }
+  });
 
   return (
     // Attach your ref!
