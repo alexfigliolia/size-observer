@@ -18,7 +18,7 @@ const observer = new SizeObserver(node, {
   width: true, // set to false to disable observing width
   height: true, // set to false to disable observing height
   type: "border-box", // (border-box, "content-box", "device-pixels")
-  onChange: ({ height, width }) => {
+  onChange: ({ height, width }, node) => {
     // your logic
   }
 });
@@ -39,7 +39,7 @@ export const MyComponent = () => {
     width: true,
     height: true,
     type: "border-box",
-    onChange: ({ width, height }) => {
+    onChange: ({ width, height }, node) => {
       // do something with the observed dimensions
     }
   });

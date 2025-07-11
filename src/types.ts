@@ -9,7 +9,8 @@ export type Dimensions = {
   [K in Extract<keyof ElementProperties, string>]: number;
 };
 
-export interface Options extends ElementProperties {
-  onChange: Callback<[dimensions: Dimensions]>;
+export interface Options<T extends Element = Element>
+  extends ElementProperties {
+  onChange: Callback<[dimensions: Dimensions, node: T]>;
   type?: ResizeObserverBoxOptions;
 }

@@ -19,13 +19,13 @@ import type { Options } from "./types";
  * observer.destroy();
  * ```
  */
-export class SizeObserver<T extends Element> {
+export class SizeObserver<T extends Element = Element> {
   node: T;
   width = 0;
   height = 0;
-  options: Options;
+  options: Options<T>;
   observer!: ResizeObserver;
-  constructor(node: T, options: Options) {
+  constructor(node: T, options: Options<T>) {
     if (!node) {
       throw new Error("Element Observer: node reference is undefined");
     }
@@ -34,7 +34,7 @@ export class SizeObserver<T extends Element> {
     this.initialize();
   }
 
-  public setOptions(options: Options) {
+  public setOptions(options: Options<T>) {
     let reconnect = false;
     if (this.options.type !== options.type) {
       reconnect = true;
@@ -100,6 +100,9 @@ export class SizeObserver<T extends Element> {
   }
 
   private emit() {
-    this.options.onChange({ width: this.width, height: this.height });
+    this.options.onChange(
+      { width: this.width, height: this.height },
+      this.node,
+    );
   }
 }
